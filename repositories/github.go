@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"accurics-test_backup/httpclient"
+	httclient "accurics-test/httpclient"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -42,7 +42,7 @@ func (g GithubImpl) GetMasterSHA(user, repo, token string) (string, error) {
 	headers[authHeaderKey] = fmt.Sprintf(authToken, token)
 	headers[acceptKey] = githubAcceptValue
 
-	resp, err := httpclient.CallRestAPI(http.MethodGet, url, headers, nil)
+	resp, err := httclient.CallRestAPI(http.MethodGet, url, headers, nil)
 	if err != nil {
 		return "", err
 	}
@@ -84,7 +84,7 @@ func (g GithubImpl) CreateBranch(user, repo, branchName, refShaID, token string)
 		// config.AppLogger.ErrorLogger.Printf("error in marshaling request from url - %s, request - %s, error - %s", url, reqBody, err.Error())
 		return err
 	}
-	resp, err := httpclient.CallRestAPI(http.MethodPost, url, headers, reqJSON)
+	resp, err := httclient.CallRestAPI(http.MethodPost, url, headers, reqJSON)
 	if err != nil {
 		return err
 	}
@@ -108,7 +108,7 @@ func (g GithubImpl) GetFileContent(user, repo, branchName, fileName, token strin
 
 	headers := make(map[string]string)
 	headers[authHeaderKey] = fmt.Sprintf(authToken, token)
-	resp, err := httpclient.CallRestAPI(http.MethodGet, url, headers, nil)
+	resp, err := httclient.CallRestAPI(http.MethodGet, url, headers, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -152,7 +152,7 @@ func (g GithubImpl) CreateORUpdateFile(user, repo, fileName, token string, req *
 		return err
 	}
 
-	resp, err := httpclient.CallRestAPI(http.MethodPut, url, headers, reqJSON)
+	resp, err := httclient.CallRestAPI(http.MethodPut, url, headers, reqJSON)
 	if err != nil {
 		return err
 	}
@@ -179,7 +179,7 @@ func (g GithubImpl) CreatePullRequest(user, repo, token string, req entity.PullR
 		return err
 	}
 
-	resp, err := httpclient.CallRestAPI(http.MethodPost, url, headers, reqJSON)
+	resp, err := httclient.CallRestAPI(http.MethodPost, url, headers, reqJSON)
 	if err != nil {
 		return err
 	}

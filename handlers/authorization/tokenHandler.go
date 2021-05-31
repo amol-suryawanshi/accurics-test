@@ -24,14 +24,12 @@ type AccessTokenHandler struct {
 }
 
 func (ath *AccessTokenHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	// config.AppLogger.InfoLogger.Println("recieved /github/callback call")
 	code := r.URL.Query().Get("code")
 	state := r.URL.Query().Get("state")
 	db.StateMapLock.RLock()
 	userID, ok := db.StateToUser[state]
 	db.StateMapLock.RUnlock()
 	if !ok {
-		// config.AppLogger.ErrorLogger.Println("recieved call for unknown state:", state)
 		w.Write([]byte("Kindly authenticate first!"))
 		return
 	}

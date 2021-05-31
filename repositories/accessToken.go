@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"accurics-test_backup/httpclient"
+	httclient "accurics-test/httpclient"
 	"context"
 	"encoding/json"
 	"errors"
@@ -36,7 +36,7 @@ func (gt *GithubTokenImpl) AccessToken(ctx context.Context, oAuthValues entity.O
 		code, oAuthValues.RedirectURL, oAuthValues.State)
 	headers := make(map[string]string)
 	headers["Accept"] = "application/json"
-	resp, err := httpclient.CallRestAPI(http.MethodPost, url, headers, nil)
+	resp, err := httclient.CallRestAPI(http.MethodPost, url, headers, nil)
 	if err != nil {
 		return err
 	}

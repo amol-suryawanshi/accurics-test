@@ -4,7 +4,6 @@
     "allowSignup":"false",
     "gitOAuthURL":"https://github.com/login/oauth",
     "gitAPIhost":"https://api.github.com",
-    "logFile":"log/github-service.log",
     "clientID": "337a35e7717af9b9915b",
     "clientSecret": "c5bb85e31d8fbef6df7f7f936d31b0346bbe61bd"
 }
